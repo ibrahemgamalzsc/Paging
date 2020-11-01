@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"></import>
+
+        <import type="java.util.ArrayList"></import>
+
+        <import type="androidx.recyclerview.widget.DividerItemDecoration"></import>
+
+        <variable
+            name="loading"
+            type="Boolean" />
+
+        <variable
+            name="showRecycleView"
+            type="Boolean" />
+
+        <variable
+            name="decoration"
+            type="ArrayList&lt;DividerItemDecoration&gt;" />
+
+        <variable
+            name="adapter"
+            type="com.example.paging.adapter.PageListAdapter" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{loading?View.VISIBLE:View.GONE,default=visible}"
+            ></ProgressBar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rec"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:setAdapter="@{adapter}"
+            android:setItemDecoration="@{decoration}"
+            android:visibility="@{showRecycleView?View.VISIBLE:View.GONE,default=gone}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/movie_list_item">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </FrameLayout>
+</layout>
